@@ -22,6 +22,14 @@ app.get("/blogs/:id", (req, res) => {
   res.status(200).json({ requestedBlog });
 });
 
+//add a new blog
+app.post("/blogs", (req, res) => {
+  const newBlogId = allBlogs[allBlogs.length - 1].id + 1;
+  const newBlog = Object.assign({ id: newBlogId }, req.body);
+  allBlogs.push(newBlog);
+  res.status(201).json({ newBlog });
+});
+
 app.listen(4000, () => {
   console.log("Server is running at port 4000");
 });
