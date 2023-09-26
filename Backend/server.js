@@ -30,6 +30,13 @@ app.post("/blogs", (req, res) => {
   res.status(201).json({ newBlog });
 });
 
+//delete specific blog
+app.delete("/blogs/:id", (req, res) => {
+  const blogId = parseInt(req.params.id);
+  allBlogs = allBlogs.filter((blog) => blog.id !== blogId);
+  res.status(203).json(allBlogs);
+});
+
 app.listen(4000, () => {
   console.log("Server is running at port 4000");
 });
